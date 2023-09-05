@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #D5CEC7 /*#F3ECE1*/;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: Space-between;
+            flex-direction: row;
+            flex-wrap: wrap;
+            font-family: Arial, sans-serif;
+            
+        }
+        .title{
+            position: relative;
+            width: 100%;
+            height: 60px;
+            padding: 20px;
+            display: flex;
+            justify-content: Space-between;
+            align-items: center;
+            background: #737373;
+            border-radius: 0 0 20px 20px;
+        }
+        .title h1{
+            position: relative;
+            color: #FF57AF;
+            font-size: 1.6em;
+            user-select: none;
+        }
+        .title h1 span{
+            position: relative;
+            color: #F89736;
+            bottom: -16px;
+        }
+        .title h3{
+            font-size: 16px;
+            letter-spacing: 0.15em;
+            color: #fff;
+            transform: translateY(18px);
+        }
+        #colorContainer {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 25px;
+            background: #C6BDB1;
+            border: 1px solid #7F7F7F;
+            border-radius: 20px;
+            padding: 20px 0;
+            width: 320px;
+            gap: 15px;
+        }
+        .colorBox {
+            width: 90%;
+            height: 80px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #efe;
+            font-size: 1.2em;
+            font-weight: 700;
+            box-shadow: 5px 5px 25px rgba(0,0,0,0.25);
+        }
+        #generateButton {
+            position: relative;
+            margin-top: 50px;
+            bottom: 50px;
+            width: 150px;
+            height: 50px;
+            background: linear-gradient(45deg,#FF0098,#FFAD24);
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-top: 50px;
+            border-radius: 15px;
+            color: #fff;
+            border: 1px solid gray;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .ad{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row
+            width: auto;
+            height: 120px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 20px 0;
+            overflow: hidden;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+        }
+        .ad .imgbx{
+            width: 120px;
+            height: 120px;
+            background: #aaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .imgbx h1{
+            position: absolute;
+            color: #ccc;
+            font-size: 5em;
+            font-weight: 900;
+        }
+        .ad .textbx{
+            width: 200px;
+            text-align: center;
+        }
+        .ad .textbx h2{
+            font-size: 1.5em;
+            color: #123456;
+            line-height: 2em;
+        }
+        .ad .textbx p{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #345678;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5em;
+            text-shadow: 2px 2px 5px #234567;
+        }
+    </style>
+    <title>COLORISE_Générateur_de couleurs_aléatoires</title>
+</head>
+<body>
+    <div class="title">
+        <h1>COLOR<span class="">RISE</span></h1>
+        <h3>Random color generator</h3>
+    </div>
+    
+   <div id="colorContainer">
+        <div class="colorBox" id="colorBox1">
+        </div>
+        <div class="colorBox" id="colorBox2">
+        </div>
+        <div class="colorBox" id="colorBox3">
+        </div>
+    </div>
+    <!--<div class="ad">
+        <div class="imgbx">
+            <img src="" alt="" />
+            <h1>AD</h1>
+        </div>
+        <div class="textbx">
+            <h2>AD NAME</h2>
+            <p>Lorem ipsum dolor sit Amet consectetur adipcicing elit</p>
+        </div>
+    </div>-->
+    <button id="generateButton">Générer</button>
+
+
+    <script>
+        function generateRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function updateColorBoxes() {
+            const colorBox1 = document.getElementById('colorBox1');
+            const colorBox2 = document.getElementById('colorBox2');
+            const colorBox3 = document.getElementById('colorBox3');
+
+            const color1 = generateRandomColor();
+            const color2 = generateRandomColor();
+            const color3 = generateRandomColor();
+
+            colorBox1.style.backgroundColor = color1;
+            colorBox2.style.backgroundColor = color2;
+            colorBox3.style.backgroundColor = color3;
+
+            colorBox1.textContent = color1;
+            colorBox2.textContent = color2;
+            colorBox3.textContent = color3;
+        }
+
+        const generateButton = document.getElementById('generateButton');
+        generateButton.addEventListener('click', updateColorBoxes);
+
+        updateColorBoxes();
+    </script>
+</body>
+</html>
